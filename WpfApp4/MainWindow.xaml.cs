@@ -21,17 +21,16 @@ namespace WpfApp4
     /// </summary>
     public partial class MainWindow : Window
     {
-        MainWindowViewModel vm;
 
         public MainWindow()
         {
             InitializeComponent();
-            vm = new MainWindowViewModel();
+            DataContext = this;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            vm.SearchLogin();
+
         }
     }
 }

@@ -68,8 +68,6 @@ namespace WpfApp4.ViewModel
             set => Set(ref searchText, value);
         }
 
-        //public List<Employee> Employees { get; set; }
-
         public void SearchLogin()
         {
             foreach (var item in EmployeeDB.Context.Employees)

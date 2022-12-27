@@ -6,38 +6,17 @@
         xmlns:local="clr-namespace:WpfApp4"
         xmlns:vm="clr-namespace:WpfApp4.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="Auto" Width="Auto">
+        Title="MainWindow" Height="350" Width="1100">
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0">
-            <!--<Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            
-            <DockPanel Height="20"
-                       HorizontalAlignment="Right"
-                       Grid.Row="0"
-                       Margin="5">
-                <Button Content="Поиск"
-                        DockPanel.Dock="Right"
-                        Margin="2 0 0 0"
-                        Click="Button_Click"/>
-                <TextBox Width="350"
-                         Text="{Binding Path=SearchText}"/>
-            </DockPanel>
-
-            <UniformGrid Grid.Row="1" Margin="5">
-                <Button Content="Добавить" Margin="2"/>
-                <Button Content="Удалить" Margin="2"/>
-            </UniformGrid>-->
             <DataGrid>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ИМЯ"/>
@@ -54,103 +33,113 @@
         </Grid>
         
         <StackPanel Grid.Column="1"
-                    Grid.IsSharedSizeScope="True">
+                    Grid.IsSharedSizeScope="True"
+                    Width="450">
             
-            <Grid>
+            <Grid Margin="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition SharedSizeGroup="group"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Label Content="ИМЯ"
-                       Grid.Column="0"/>
+                       Grid.Column="0"
+                       HorizontalAlignment="Right"/>
                 <TextBox Text="{Binding Path=Name}"
                          Grid.Column="1"/>
             </Grid>
 
-            <Grid>
+            <Grid Margin="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition SharedSizeGroup="group"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Label Content="ОТЧЕСТВО"
-                       Grid.Column="0"/>
+                       Grid.Column="0"
+                       HorizontalAlignment="Right"/>
                 <TextBox Text="{Binding Path=Patronimyc}"
                          Grid.Column="1"/>
             </Grid>
 
-            <Grid>
+            <Grid Margin="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition SharedSizeGroup="group"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Label Content="ФАМИЛИЯ"
-                       Grid.Column="0"/>
+                       Grid.Column="0"
+                       HorizontalAlignment="Right"/>
                 <TextBox Text="{Binding Path=Surname}"
                          Grid.Column="1"/>
             </Grid>
 
-            <Grid>
+            <Grid Margin="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition SharedSizeGroup="group"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Label Content="НОМЕР ТЕЛЕФОНА"
-                       Grid.Column="0"/>
+                       Grid.Column="0"
+                       HorizontalAlignment="Right"/>
                 <TextBox Text="{Binding Path=NumberPhone}"
                          Grid.Column="1"/>
             </Grid>
 
-            <Grid>
+            <Grid Margin="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition SharedSizeGroup="group"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Label Content="ДОЛЖНОСТЬ"
-                       Grid.Column="0"/>
+                       Grid.Column="0"
+                       HorizontalAlignment="Right"/>
                 <TextBox Text="{Binding Path=JobTitle}"
                          Grid.Column="1"/>
             </Grid>
 
-            <Grid>
+            <Grid Margin="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition SharedSizeGroup="group"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Label Content="ОТДЕЛ"
-                       Grid.Column="0"/>
+                       Grid.Column="0"
+                       HorizontalAlignment="Right"/>
                 <TextBox Text="{Binding Path=Departament}"
                          Grid.Column="1"/>
             </Grid>
 
-            <Grid>
+            <Grid Margin="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition SharedSizeGroup="group"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Label Content="ЛОГИН"
-                       Grid.Column="0"/>
+                       Grid.Column="0"
+                       HorizontalAlignment="Right"/>
                 <TextBox Text="{Binding Path=Login}"
                          Grid.Column="1"/>
             </Grid>
 
-            <Grid>
+            <Grid Margin="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition SharedSizeGroup="group"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Label Content="ПАРОЛЬ"
-                       Grid.Column="0"/>
+                       Grid.Column="0"
+                       HorizontalAlignment="Right"/>
                 <TextBox Text="{Binding Path=Password}"
                          Grid.Column="1"/>
             </Grid>
 
-            <Grid>
+            <Grid Margin="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition SharedSizeGroup="group"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Label Content="EMAIL"
-                       Grid.Column="0"/>
+                       Grid.Column="0"
+                       HorizontalAlignment="Right"/>
                 <TextBox Text="{Binding Path=Email}"
                          Grid.Column="1"/>
             </Grid>
@@ -167,6 +156,10 @@
                         DockPanel.Dock="Left"
                         Width="100"/>
                 <Button Content="Удалить"
+                        Margin="2"
+                        DockPanel.Dock="Left"
+                        Width="100"/>
+                <Button Content="Очистить"
                         Margin="2"
                         DockPanel.Dock="Left"
                         Width="100"/>

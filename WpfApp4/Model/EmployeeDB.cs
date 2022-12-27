@@ -4,6 +4,7 @@ namespace WpfApp4.Model
 {
     internal class EmployeesDB
     {
+        // список сотрудников
         public List<Employee> Employees { get; set; }
         public EmployeesDB()
         {

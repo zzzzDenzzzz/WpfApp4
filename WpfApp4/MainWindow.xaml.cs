@@ -25,12 +25,6 @@ namespace WpfApp4
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = this;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

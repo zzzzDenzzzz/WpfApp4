@@ -8,7 +8,7 @@
         public string Surname { get; set; }
         // отчество
         public string Patronymic { get; set; }
-        // телефонный номер
+        // номер телефона
         public string PhoneNumber { get; set; }
         // должность
         public string JobTitle { get; set; }

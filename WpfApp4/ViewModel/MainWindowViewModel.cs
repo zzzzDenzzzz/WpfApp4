@@ -11,12 +11,26 @@ namespace WpfApp4.ViewModel
 {
     internal class MainWindowViewModel : ViewModel
     {
-        // фио
-        string nameSurnamePatronimyc;
-        public string NameSurnamePatronimyc
+        // имя
+        string name;
+        public string Name
         {
-            get => nameSurnamePatronimyc;
-            set => Set(ref nameSurnamePatronimyc, value);
+            get => name;
+            set => Set(ref name, value);
+        }
+        // фамилия
+        string surname;
+        public string Surname
+        {
+            get => surname;
+            set => Set(ref surname, value);
+        }
+        // отчество
+        string patronimyc;
+        public string Patronimyc
+        {
+            get => patronimyc;
+            set => Set(ref patronimyc, value);
         }
         // номер телефона
         string numberPhone;
@@ -59,24 +73,6 @@ namespace WpfApp4.ViewModel
         {
             get => email;
             set => Set(ref email, value);
-        }
-        // поиск
-        string searchText;
-        public string SearchText
-        {
-            get => searchText;
-            set => Set(ref searchText, value);
-        }
-
-        public void SearchLogin()
-        {
-            foreach (var item in EmployeeDB.Context.Employees)
-            {
-                if (item.Login == SearchText)
-                {
-                    MessageBox.Show(item.Login);
-                }
-            }
         }
     }
 }

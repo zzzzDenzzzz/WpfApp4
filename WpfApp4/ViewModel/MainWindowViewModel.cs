@@ -1,78 +1,102 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using WpfApp4.Model;
+using System.Windows.Input;
+using WpfApp4.Model.Departament;
+using WpfApp4.ViewModel.Command;
 
 namespace WpfApp4.ViewModel
 {
     internal class MainWindowViewModel : ViewModel
     {
-        // имя
-        string name;
-        public string Name
+        /// <summary>
+        /// список(коллекция) отделов
+        /// </summary>
+        public ObservableCollection<Departament> Departaments { get; }
+
+        Departament selectedDepartament;
+        /// <summary>
+        /// выбранный отдел
+        /// </summary>
+        public Departament SelectedDepartament
         {
-            get => name;
-            set => Set(ref name, value);
+            get => selectedDepartament;
+            set => Set(ref selectedDepartament, value);
         }
-        // фамилия
-        string surname;
-        public string Surname
+
+        /////////////////////////////////////////////////////////////////////
+        
+        /// <summary>
+        /// команда для создания отдела
+        /// </summary>
+        public ICommand CreateDepartamentCommand { get; }
+
+        bool CanCreateDepartamentCommandExecute(object d) => true;
+
+        void OnCreateDepartamentCommandExecuted(object d)
         {
-            get => surname;
-            set => Set(ref surname, value);
+            var departamentMaxIndex = Departaments.Count + 1;
+            var newDepartament = new Departament
+            {
+                Name = $"Отдел {departamentMaxIndex}",
+                Employees = new ObservableCollection<Employee> ()
+            };
+
+            Departaments.Add(newDepartament);
         }
-        // отчество
-        string patronimyc;
-        public string Patronimyc
+
+        /// <summary>
+        /// команда для удаления отдела
+        /// </summary>
+        public ICommand DeleteDepartamentCommand { get; }
+
+        bool CanDeleteDepartamentCommandExecute(object d) => d is Departament departament && Departaments.Contains(departament);
+
+        void OnDeleteDepartamentCommandExecuted(object d)
         {
-            get => patronimyc;
-            set => Set(ref patronimyc, value);
+            if (!(d is Departament departament))
+            {
+                return;
+            }
+
+            var departamentIndex = Departaments.IndexOf(departament);
+
+            Departaments.Remove(departament);
+
+            if (departamentIndex < Departaments.Count)
+            {
+                SelectedDepartament = Departaments[departamentIndex];
+            }
         }
-        // номер телефона
-        string numberPhone;
-        public string NumberPhone
+
+        ///////////////////////////////////////////////////////////////////
+        
+        public MainWindowViewModel()
         {
-            get => numberPhone;
-            set => Set(ref numberPhone, value);
-        }
-        // должность
-        string jobTitle;
-        public string JobTitle
-        {
-            get => jobTitle;
-            set => Set(ref jobTitle, value);
-        }
-        // отдел
-        string departament;
-        public string Departament
-        {
-            get => departament;
-            set => Set(ref departament, value);
-        }
-        // логин
-        string login;
-        public string Login
-        {
-            get => login;
-            set => Set(ref login, value);
-        }
-        // пароль
-        string password;
-        public string Password
-        {
-            get => password;
-            set => Set(ref password, value);
-        }
-        // e-mail
-        string email;
-        public string Email
-        {
-            get => email;
-            set => Set(ref email, value);
+            // создает команды
+            CreateDepartamentCommand = new LambdaCommand(OnCreateDepartamentCommandExecuted, CanCreateDepartamentCommandExecute);
+            DeleteDepartamentCommand = new LambdaCommand(OnDeleteDepartamentCommandExecuted, CanDeleteDepartamentCommandExecute);
+
+            var employeeIndex = 1;
+            // создает девять сотрудников
+            var employees = Enumerable.Range(1, 9).Select(i => new Employee
+            {
+                Name = $"Name {employeeIndex}",
+                Surname = $"Surname {employeeIndex}",
+                Patronymic = $"Patronymic {employeeIndex}",
+                PhoneNumber = $"{employeeIndex}{employeeIndex}-{employeeIndex}{employeeIndex}-{employeeIndex}{employeeIndex}",
+                JobTitle = $"JobTitle {employeeIndex}",
+                Login = $"Login {employeeIndex}",
+                Password = $"Password {employeeIndex}",
+                EMail = $"@Mail_{employeeIndex++}.com",
+            });
+            // создает девять отделов по девять сотрудников в каждом
+            var departaments = Enumerable.Range(1, 9).Select(i => new Departament
+            {
+                Name = $"Отдел {i}",
+                Employees = new ObservableCollection<Employee>(employees)
+            });
+
+            Departaments = new ObservableCollection<Departament>(departaments);
         }
     }
 }

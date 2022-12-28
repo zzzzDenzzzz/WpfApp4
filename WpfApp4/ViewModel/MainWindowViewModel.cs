@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 using WpfApp4.Model.Departament;
 using WpfApp4.ViewModel.Command;
@@ -21,6 +22,16 @@ namespace WpfApp4.ViewModel
         {
             get => selectedDepartament;
             set => Set(ref selectedDepartament, value);
+        }
+
+        Employee selectedEmployee;
+        /// <summary>
+        /// выбранный сотрудник
+        /// </summary>
+        public Employee SelectedEmployee
+        {
+            get => selectedEmployee;
+            set => Set(ref selectedEmployee, value);
         }
 
         /////////////////////////////////////////////////////////////////////
@@ -68,13 +79,40 @@ namespace WpfApp4.ViewModel
             }
         }
 
+        /// <summary>
+        /// команда для создания сотрудника
+        /// </summary>
+        public ICommand CreateEmployeeCommand { get; }
+
+        bool CanCreateEmployeeCommandExecute(object e) => true;
+
+        void OnCreateEmployeeCommandExecuted(object e)
+        {
+            MessageBox.Show("Test");
+        }
+
+        /// <summary>
+        /// команда для удаления сотрудника
+        /// </summary>
+        public ICommand DeleteEmployeeCommand { get; }
+
+        bool CanDeleteEmployeeCommandExecute(object e) => true;
+
+        void OnDeleteEmployeeCommandExecuted(object e)
+        {
+            MessageBox.Show("Test");
+        }
+
         ///////////////////////////////////////////////////////////////////
-        
+
         public MainWindowViewModel()
         {
             // создает команды
             CreateDepartamentCommand = new LambdaCommand(OnCreateDepartamentCommandExecuted, CanCreateDepartamentCommandExecute);
             DeleteDepartamentCommand = new LambdaCommand(OnDeleteDepartamentCommandExecuted, CanDeleteDepartamentCommandExecute);
+
+            CreateEmployeeCommand = new LambdaCommand(OnCreateEmployeeCommandExecuted, CanCreateEmployeeCommandExecute);
+            DeleteEmployeeCommand = new LambdaCommand(OnDeleteEmployeeCommandExecuted, CanDeleteEmployeeCommandExecute);
 
             var employeeIndex = 1;
             // создает девять сотрудников
